@@ -1,4 +1,4 @@
-pub mod day_1 {
+pub mod day_1_solution {
     use std::fs::File;
     use std::io::{BufRead, BufReader};
 
@@ -18,13 +18,10 @@ pub mod day_1 {
         let mut count: u32 = 0;
         for (_current, &current_reading) in depth_data.iter().enumerate() {
             next_iter.next();
-            match next_iter.peek() {
-                Some(&&next_reading) => {
-                    if next_reading > current_reading {
-                        count += 1;
-                    }
-                },
-                None => {},
+            if let Some(&&next_reading) = next_iter.peek() {
+                if next_reading > current_reading {
+                    count += 1;
+                }
             }
         }
         count
